@@ -8,9 +8,11 @@ import org.apache.commons.io.FileUtils;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -46,6 +48,19 @@ public class TodoActivity extends Activity {
 				return true;
 			}
 			
+		});
+		lvItems.setOnItemClickListener(new OnItemClickListener() {
+			@Override
+			public void onItemClick(AdapterView<?> adapter, View item, int pos,
+					long id) {
+				String itemText = items.get(pos).toString();
+				// TODO Add Intent here (pass itemText and pos to edit form activity)
+				Intent i = new Intent(TodoActivity.this, EditItemActivity.class);
+				i.putExtra("itemText", itemText);
+				i.putExtra("index", pos);
+				startActivity(i);
+				return;
+			}
 		});
 	}
 	
