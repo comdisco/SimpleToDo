@@ -120,6 +120,7 @@ public class TodoActivity extends Activity {
 			System.out.println("Index: " + index);
 			items.set(index, newText);
 			itemsAdapter.notifyDataSetChanged();
+			saveItems();
 		}
 	}
 
