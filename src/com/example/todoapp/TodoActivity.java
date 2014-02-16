@@ -23,6 +23,7 @@ public class TodoActivity extends Activity {
 	private ArrayAdapter<String> itemsAdapter;
 	private ListView lvItems;
 	private EditText etNewItem;
+	private final int REQUEST_CODE = 20;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +59,7 @@ public class TodoActivity extends Activity {
 				Intent i = new Intent(TodoActivity.this, EditItemActivity.class);
 				i.putExtra("itemText", itemText);
 				i.putExtra("index", pos);
-				startActivity(i);
+				startActivityForResult(i, REQUEST_CODE);
 				return;
 			}
 		});
@@ -106,6 +107,20 @@ public class TodoActivity extends Activity {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.todo, menu);
 		return true;
+	}
+	
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data)
+	{
+		if (resultCode == RESULT_OK && requestCode == REQUEST_CODE)
+		{
+			int index = data.getExtras().getInt("index");
+			String newText = data.getExtras().getString("newText");
+			System.out.println("Edited text: " + newText);
+			System.out.println("Index: " + index);
+			items.set(index, newText);
+			itemsAdapter.notifyDataSetChanged();
+		}
 	}
 
 }
