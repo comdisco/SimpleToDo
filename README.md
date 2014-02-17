@@ -1,4 +1,4 @@
-android-develop
+SimpleToDo
 ===============
 
-Android development example code
+A simple To Do list app with edit functionality
