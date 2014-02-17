@@ -116,8 +116,6 @@ public class TodoActivity extends Activity {
 		{
 			int index = data.getExtras().getInt("index");
 			String newText = data.getExtras().getString("newText");
-			System.out.println("Edited text: " + newText);
-			System.out.println("Index: " + index);
 			items.set(index, newText);
 			itemsAdapter.notifyDataSetChanged();
 			saveItems();
